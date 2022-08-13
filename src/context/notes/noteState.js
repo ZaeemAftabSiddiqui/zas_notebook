@@ -17,6 +17,8 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag }),
     });
+    const json = await response.json();
+    console.log(json);
     console.log("Adding new note");
     const note = {
       _id: "62d979ac039c5d70f90bb6b69",
@@ -28,7 +30,7 @@ const NoteState = (props) => {
     };
     setNotes(notes.concat(note));
   };
-  //Get all notes note
+  //Get all notes
   const getNotes = async () => {
     //API Call
     const response = await fetch(`${host}/api/notes/fetchallnotes`, {
@@ -74,16 +76,21 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag }),
     });
-    const json = response.json();
+    const json = await response.json();
+    console.log(json);
+    let newNotes = JSON.parse(JSON.stringify(notes));
     //Logic to edit in client
-    for (let index = 0; index < notes.length; index++) {
+    for (let index = 0; index < newNotes.length; index++) {
       const element = notes[index];
       if (element._id === id) {
-        element.title = title;
-        element.description = description;
-        element.tag = tag;
+        newNotes[index].title = title;
+        newNotes[index].description = description;
+        newNotes[index].tag = tag;
+        break;
       }
     }
+    console.log(notes);
+    setNotes(newNotes);
   };
   return (
     <NoteContext.Provider
