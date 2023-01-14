@@ -6,7 +6,7 @@ A simple and intuitive note-taking app built using React.js and bootstrap.
 ## Features
 
 - CRUD: Create, read, edit(update) and delete notes
-- Login and Signup fuction
+- Login and Signup functionality
 - Secure user authentication using JWT webtoken
 
 ## Getting Started
